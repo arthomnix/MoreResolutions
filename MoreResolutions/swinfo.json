@@ -1,0 +1,21 @@
+{
+  "mod_id": "MoreResolutions",
+  "author": "arthomnix",
+  "name": "More Resolutions",
+  "description": "Allows you to select non-16:9 screen resolutions",
+  "source": "",
+  "version": "0.1.0",
+  "dependencies": [
+    {
+      "id":  "SpaceWarp",
+      "version": {
+        "min": "0.4.0",
+        "max": "*"
+      }
+    }
+  ],
+  "ksp2_version": {
+    "min": "0.1.0",
+    "max": "*"
+  }
+}
