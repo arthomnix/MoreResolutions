@@ -3,7 +3,7 @@
   "author": "arthomnix",
   "name": "More Resolutions",
   "description": "Allows you to select non-16:9 screen resolutions",
-  "source": "",
+  "source": "https://github.com/arthomnix/MoreResolutions/",
   "version": "0.1.0",
   "dependencies": [
     {
