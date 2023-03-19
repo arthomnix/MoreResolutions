@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using HarmonyLib;
 using SpaceWarp;
 using SpaceWarp.API.Mods;
@@ -14,8 +15,10 @@ public class MoreResolutionsPlugin : BaseSpaceWarpPlugin
     public const string ModName = MyPluginInfo.PLUGIN_NAME;
     public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
-    public static MoreResolutionsPlugin Instance { get; set; }
+    public static MoreResolutionsPlugin Instance { get; private set; }
 
+    public ConfigEntry<string> CustomResolution { get; private set; }
+    
     /// <summary>
     /// Runs when the mod is first initialized.
     /// </summary>
@@ -27,5 +30,12 @@ public class MoreResolutionsPlugin : BaseSpaceWarpPlugin
 
         // Register all Harmony patches in the project
         Harmony.CreateAndPatchAll(typeof(MoreResolutionsPlugin).Assembly);
+
+        CustomResolution = Config.Bind(
+            "More Resolutions",
+            "CustomResolution",
+            "", 
+            "Custom resolution to add to list (format: <width>x<height>)"
+            );
     }
 }

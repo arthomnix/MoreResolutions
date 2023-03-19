@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Text.RegularExpressions;
 using HarmonyLib;
 using KSP.UI;
 using UnityEngine;
@@ -10,6 +11,9 @@ namespace MoreResolutions;
 [HarmonyPatch("InitializeResolutionDropdown")]
 public class GraphicsSettingsMenuManagerPatch
 {
+    // Regex to make sure the custom resolution is in the correct format
+    private static readonly Regex Regex = new(@"^\d+x\d+$", RegexOptions.Compiled);
+    
     // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
     private static readonly MethodInfo MathfApproximately = SymbolExtensions.GetMethodInfo(() => Mathf.Approximately(0.0f, 0.0f));
     
@@ -26,5 +30,15 @@ public class GraphicsSettingsMenuManagerPatch
             }
             else yield return instruction;
         }
+    }
+    
+    // ReSharper disable once UnusedMember.Local
+    // ReSharper disable once InconsistentNaming
+    // Add the custom resolution to the dropdown
+    private static void Postfix(GraphicsSettingsMenuManager __instance)
+    {
+        var customRes = MoreResolutionsPlugin.Instance.CustomResolution.Value;
+        if (Regex.Matches(customRes).Count == 1)
+            __instance._resolutionDropDown.AddOptions(new List<string> { customRes });
     }
 }

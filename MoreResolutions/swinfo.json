@@ -2,9 +2,9 @@
   "mod_id": "MoreResolutions",
   "author": "arthomnix",
   "name": "More Resolutions",
-  "description": "Allows you to select unsupported screen resolutions",
+  "description": "Allows you to select unsupported and custom screen resolutions",
   "source": "https://github.com/arthomnix/MoreResolutions/",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "dependencies": [
     {
       "id":  "SpaceWarp",
